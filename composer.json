@@ -1,0 +1,17 @@
+{
+    "name": "deepslam/content_parser",
+    "description": "Simple content parser which can detect content on different URL's",
+    "type": "laravel-package",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Ivanov Dmitry",
+            "email": "me@ivanovdmitry.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ixudra/curl": "6.*",
+        "j0k3r/graby": "1.*"
+    }
+}
