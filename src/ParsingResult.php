@@ -73,5 +73,14 @@ final class ParsingResult {
     public function cleanContent() {
         $this->params["content"] = preg_replace( '/\s?(style|class|id)=[\'"]{1}.*[\'"]{1}/sUi', '', $this->params["content"], -1 );
     }
+
+    /**
+     * Let's strip tags from unwilling tags
+     *
+     *@return String Stripped content
+     */
+    public function stripContent() {
+        $this->params["content"] = strip_tags($this->params["content"], implode('',config('deepslam.parser.allowed_tags')));
+    }
 }
 ?>

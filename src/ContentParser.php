@@ -53,6 +53,9 @@ abstract class ContentParser {
         $this->url = $url;
         $this->urlParams = parse_url($this->getURL());
         $this->parsingResult = $this->parse();
+        if ($this->needsCodeStrip()) {
+            $this->parsingResult->stripContent();
+        }
         if ($this->needsCodeClean()) {
             $this->parsingResult->cleanContent();
         }
@@ -94,6 +97,15 @@ abstract class ContentParser {
      */
     final protected function needsCodeClean() {
         return ((bool)config('deepslam.parser.clean_code'));
+    }
+
+    /**
+     * Checks whether have to strip tags or not.
+     *
+     * @return bool True - need to strip tags, false - needn't to strip tags
+     */
+    final protected function needsCodeStrip() {
+        return ((bool)config('deepslam.parser.strip_tags'));
     }
 
     /*** STATIC LAYER ***/

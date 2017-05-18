@@ -1,5 +1,5 @@
 <?php
     return [
-        'api-key' => 'YVMpLAlWqWk9DSJHcWMCdsFhqMSrIhoK0YaQwfX6',
+        'api_key' => 'YVMpLAlWqWk9DSJHcWMCdsFhqMSrIhoK0YaQwfX6',
     ];
 ?>

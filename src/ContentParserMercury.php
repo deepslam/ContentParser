@@ -9,7 +9,7 @@ final class ContentParserMercury extends ContentParser
     {
         $result = new ParsingResult();
         $response = Curl::to('https://mercury.postlight.com/parser?url='.urlencode($this->getURL()))
-            ->withHeaders(array('x-api-key: '.config('deepslam.mercury.api-key')))
+            ->withHeaders(array('x-api-key: '.config('deepslam.mercury.api_key')))
             ->asJson()
             ->get();
         if (!is_null($response)) {
