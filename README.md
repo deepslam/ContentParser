@@ -95,7 +95,7 @@ There are a few methods in this object:
 **stripContent** - Manually strip content from tags
 **cleanContent** - Manually clean content from strange classes, ID's and style blocks in the parsed HTML
 
-## Extends
+## Extending
 
 If you want to add the new package you must create the new class and inherit it from Deepslam\ContentParser\ContentParser class.
 You must realise the only one method - parse which must return ParsingResult object with data.
