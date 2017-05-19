@@ -4,12 +4,12 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 
 With this package, you can easily detect main content on different web pages and grab the content from it.
-This package provides follow features:
+This package provides following features:
 
 * Expandable architecture. You can easily add support for new APIs
 * Code cleaning. The package can automatically clean CSS and style attributes. Thus you always will receive clean and good HTML content.
 
-The package use automatic algorithms for grabbing data from web pages.
+The package uses automatic algorithms for grabbing data from web pages.
 You'll receive the title and the content from needle web page.
 
 ## Requirements
@@ -23,7 +23,7 @@ The package requires follow solutions:
 
 ## Installation
 
-You can install the package with Composer.
+You can install the package via Composer.
 Just run:
 
 ```console
@@ -38,7 +38,7 @@ Deepslam\ContentParser\ContentParserServiceProvider::class,
 ...
 ```
 
-Next step is creating alias in your config/app.php:
+At next step you need to create alias in your config/app.php:
 
 ```php
 'ContentParser' => Deepslam\ContentParser\ContentParser::class,
@@ -67,8 +67,8 @@ There are two different parsers:
 
 Thus you have 3 configs:
 
-* /config/deepslam/parser.php - common config for all parsers. Here you can configure such options as necessary of cleaning code, stripping tags and set allow tags list.
-* /config/deepslam/mercury-tools.php - There is only one settings - API key for service
+* /config/deepslam/parser.php - This is the common config for all parsers. Here you can configure such options as necessary of cleaning code, stripping tags, set allow tags list etc.
+* /config/deepslam/mercury-tools.php - There is only one settings - API key for Mercury API service
 * /config/deepslam/graby.php - This is the copy of original settings of [graby](https://github.com/j0k3r/graby/) parser. You can read about it on [developer's page](https://github.com/j0k3r/graby/).
 
 ## Usage
@@ -89,13 +89,13 @@ $parser = ContentParser::create('mercury');
 
 As result, you will receive ContentParser object.
 
-For parse data you must use parse method which return true\false result (true if data has been received, false if not)
+For parse data, you must use parse method which return true\false result (true if data has been received, false if not)
 
 ```php
 $parser->parse($url)
 ```
 
-For getting result of parsing there is one method:
+For getting a result of parsing there is one method:
 
 **getResult** - Returns needle ParsingResult object
 
@@ -111,15 +111,15 @@ There are a few methods in this object:
 
 ## Extending
 
-If you want to add the new package you must create the new class and inherit it from Deepslam\ContentParser\ContentParser class.
-You must realise the only one method - parse which must return ParsingResult object with data.
+If you want to add a new parser you must create a new class and inherit it from \Deepslam\ContentParser\ContentParser class.
+You must realise the only one method - parse which must return bool as result and changes internal result object.
 
 After it, you must specific your new class in the /config/deepslam/parser.php parsers array.
 
 To use you parser specify it when you call ContentParser as shows below:
 
 ```php
-$parser = ContentParser::create($extras->grab_url, '<your alias of parser>');
+$parser = ContentParser::create('<your alias of parser>');
 ```
 
 ## Full example
