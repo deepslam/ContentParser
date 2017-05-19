@@ -13,6 +13,14 @@ abstract class ContentParser {
     const ERR_WRONG_URL = 'No URL has been received';
 
     /**
+     * Parsing constants
+     *
+     * @const boolean
+     */
+    const PARSING_DONE = true;
+    const PARSING_FAIL = false;
+
+    /**
      * Registered parsers
      *
      * @var array
@@ -46,19 +54,8 @@ abstract class ContentParser {
      * @return ContentParser
      * @throw new Exception if no url has been received
      */
-    public function __construct($url, Array $params = []) {
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            throw new Exception(self::ERR_WRONG_URL);
-        }
-        $this->url = $url;
-        $this->urlParams = parse_url($this->getURL());
-        $this->parsingResult = $this->parse();
-        if ($this->needsCodeStrip()) {
-            $this->parsingResult->stripContent();
-        }
-        if ($this->needsCodeClean()) {
-            $this->parsingResult->cleanContent();
-        }
+    public function __construct() {
+        $this->parsingResult = new ParsingResult();
     }
 
     /**
@@ -118,13 +115,13 @@ abstract class ContentParser {
      *
      * @return ContentParserMercury The link to the created instance
      */
-    public static function create(String $url,String $parser = '') {
+    public static function create(String $parser = '') {
         if (isset(self::$parsers[$parser])) {
             $workParser = self::$parsers[$parser];
         } else {
             $workParser = ContentParserGraby::class;
         }
-        return new $workParser($url);
+        return new $workParser();
     }
 
     /**
@@ -144,12 +141,53 @@ abstract class ContentParser {
         }
     }
 
+    /**
+     * Parses the needle URL
+     * Throws exception if has been received wrong URL
+     *
+     * @param String $url URL for parsing
+     *
+     * @return boolean True - parsing has been done, false parsing hasn't been done
+     */
+    public function parse($url) {
+        $result = self::PARSING_FAIL;
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            throw new Exception(self::ERR_WRONG_URL);
+        }
+        $this->url = $url;
+        $this->urlParams = parse_url($this->getURL());
+        if ($this->needsCodeStrip()) {
+            $this->parsingResult->stripContent();
+        }
+        if ($this->needsCodeClean()) {
+            $this->parsingResult->cleanContent();
+        }
+        $this->resetParsingResult();
+        if ($this->getData()) {
+            $result = self::PARSING_DONE;
+        }
+        return $result;
+    }
+
+    /*** PRIVATE LAYER ***/
+    /**
+     * Resets parsing result
+     *
+     * @return nothing
+     */
+    private function resetParsingResult() {
+        if ($this->parsingResult instanceof ParsingResult) {
+            unset($this->parsingResult);
+        }
+        $this->parsingResult = new ParsingResult();
+    }
+
     /*** ABSTRACT LAYER ***/
     /**
      * Abstract function of parsing content
      *
      * @return mixed
      */
-    abstract protected function parse():ParsingResult;
+    abstract protected function getData():bool;
 }
 ?>

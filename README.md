@@ -1,13 +1,16 @@
 # Content Parser - Laravel 5 package for automatically detecting a content on custom web pages.
 
-With this package, you can easily detect main content on different web pages and grab it.
-This package provides also follow features:
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Total Downloads][ico-downloads]][link-downloads]
+
+With this package, you can easily detect main content on different web pages and grab the content from it.
+This package provides follow features:
 
 * Expandable architecture. You can easily add support for new APIs
 * Code cleaning. The package can automatically clean CSS and style attributes. Thus you always will receive clean and good HTML content.
 
 The package use automatic algorithms for grabbing data from web pages.
-You'll receive the title and the content on a web page.
+You'll receive the title and the content from needle web page.
 
 ## Requirements
 
@@ -23,7 +26,9 @@ The package requires follow solutions:
 You can install the package with Composer.
 Just run:
 
+```console
 php composer require deepslam/content_parser
+```
 
 Further, you have to add service provider in your config/app.php:
 
@@ -71,16 +76,25 @@ Thus you have 3 configs:
 You can easily use ContentParser:
 
 ```php
-$parser = ContentParser::create($extras->grab_url);
+$parser = ContentParser::create();
 ```
 
-This configuration will use "Graby" parser. If you need to use another one, you can specify it as second parameter:
+There will be ContentParser object created.
+
+This configuration will use "Graby" parser. If you need to use another one, you can specify it as a parameter:
 
 ```php
-$parser = ContentParser::create($extras->grab_url, 'mercury');
+$parser = ContentParser::create('mercury');
 ```
 
 As result, you will receive ContentParser object.
+
+For parse data you must use parse method which return true\false result (true if data has been received, false if not)
+
+```php
+$parser->parse($url)
+```
+
 For getting result of parsing there is one method:
 
 **getResult** - Returns needle ParsingResult object
@@ -111,7 +125,8 @@ $parser = ContentParser::create($extras->grab_url, '<your alias of parser>');
 ## Full example
 
 ```php
-        $parser = ContentParser::create('<url to grab>');
+        $parser = ContentParser::create('<parser which you need>');
+        $parser->parse('<url to grab>');
         $result = $parser->getResult();
         <your_model>->name = $result->getTitle();
         <your_model>->description = $result->getContent();

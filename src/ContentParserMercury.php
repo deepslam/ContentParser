@@ -5,9 +5,9 @@ use Curl;
 
 final class ContentParserMercury extends ContentParser
 {
-    final protected function parse():ParsingResult
+    final protected function getData():bool
     {
-        $result = new ParsingResult();
+        $result = $this->getResult();
         $response = Curl::to('https://mercury.postlight.com/parser?url='.urlencode($this->getURL()))
             ->withHeaders(array('x-api-key: '.config('deepslam.mercury.api_key')))
             ->asJson()
@@ -16,7 +16,7 @@ final class ContentParserMercury extends ContentParser
             $result->setTitle($response->title);
             $result->setContent($response->content);
         }
-        return $result;
+        return ($result->isEmpty());
     }
 }
 ?>
