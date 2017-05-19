@@ -27,7 +27,7 @@ You can install the package via Composer.
 Just run:
 
 ```console
-php composer require deepslam/content_parser
+php composer require deepslam/content-parser
 ```
 
 Further, you have to add service provider in your config/app.php:
