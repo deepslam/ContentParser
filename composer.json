@@ -1,7 +1,8 @@
 {
     "name": "deepslam/content_parser",
-    "description": "Simple content parser which can detect content on different URL's",
+    "description": "Simple content grabber which can detecting content on various web pages",
     "type": "laravel-package",
+    "version": "1.0",
     "license": "GNU",
     "authors": [
         {
