@@ -2,7 +2,7 @@
     "name": "deepslam/content-parser",
     "description": "Simple content grabber which can detecting content on various web pages",
     "type": "laravel-package",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "GNU",
     "authors": [
         {
@@ -14,5 +14,10 @@
     "require": {
         "ixudra/curl": "6.*",
         "j0k3r/graby": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Deepslam\\content-parser\\": "src"
+        }
     }
 }
