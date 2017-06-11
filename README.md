@@ -97,17 +97,21 @@ $parser->parse($url)
 
 For getting a result of parsing there is one method:
 
-**getResult** - Returns needle ParsingResult object
+* **getResult** - Returns needle ParsingResult object
 
 There are a few methods in this object:
 
-**setTitle** - Set new title
-**setContent** - Set new content
-**getTitle**  - The title of result
-**getContent** - The content of result. It can be already cleaned if you specify it in configs.
-**isEmpty** - Is it empty object (without data) or not?
-**stripContent** - Manually strip content from tags
-**cleanContent** - Manually clean content from strange classes, ID's and style blocks in the parsed HTML
+* **setTitle** - Set new title
+* **setContent** - Set new content
+* **setImage** - Set main image for the content
+* **setOriginal** - Save original response
+* **getTitle**  - The title of result
+* **getContent** - The content of result. It can be already cleaned if you specify it in configs.
+* **getImage** - Returns URL to the OG Image or empty string
+* **getOriginal** - Just returns service\script original response
+* **isEmpty** - Is it empty object (without data) or not?
+* **stripContent** - Manually strip content from tags
+* **cleanContent** - Manually clean content from strange classes, ID's and style blocks in the parsed HTML
 
 ## Extending
 

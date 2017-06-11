@@ -13,6 +13,7 @@ final class ContentParserMercury extends ContentParser
             ->asJson()
             ->get();
         if (!is_null($response)) {
+            $result->setOriginal($response);
             $result->setTitle($response->title);
             $result->setContent($response->content);
         }

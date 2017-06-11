@@ -147,10 +147,9 @@ abstract class ContentParser {
      *
      * @param String $url URL for parsing
      *
-     * @return boolean True - parsing has been done, false parsing hasn't been done
+     * @return @ParsingResult Link to the parsing result
      */
     public function parse($url) {
-        $result = self::PARSING_FAIL;
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
             throw new Exception(self::ERR_WRONG_URL);
         }
@@ -163,10 +162,8 @@ abstract class ContentParser {
             $this->parsingResult->cleanContent();
         }
         $this->resetParsingResult();
-        if ($this->getData()) {
-            $result = self::PARSING_DONE;
-        }
-        return $result;
+        $this->getData();
+        return $this->getResult();
     }
 
     /*** PRIVATE LAYER ***/

@@ -20,8 +20,17 @@ final class ParsingResult {
      */
     private $params = [
         'title' => '',
-        'content' => ''
+        'content' => '',
+        'image' => '',
+        'original' => array(),
     ];
+
+    /**
+     * Is it empty result, sir?
+     *
+     * @var bool
+     */
+    private $isEmpty = true;
 
     /**
      * Magic method for get and sets values
@@ -40,6 +49,7 @@ final class ParsingResult {
                     if (isset($this->params[$param]) && is_array($params) && isset($params[0])) {
                         $this->params[$param] = $params[0];
                         $result = true;
+                        $this->isEmpty = false;
                     }
                 break;
             case "GET":
@@ -59,10 +69,7 @@ final class ParsingResult {
      * @return boolean True - yes, it's empty, false - no, it isn't empty
      */
     public function isEmpty() {
-        return (
-            empty($this->getTitle()) &&
-            empty($this->getContent())
-        );
+        return $this->isEmpty;
     }
 
     /**
