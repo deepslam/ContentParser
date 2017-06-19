@@ -2,8 +2,7 @@
     "name": "deepslam/content-parser",
     "description": "Simple content grabber which can detecting content on various web pages",
     "type": "laravel-package",
-    "version": "1.0.3",
-    "license": "GNU",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Ivanov Dmitry",

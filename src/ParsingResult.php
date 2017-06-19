@@ -9,9 +9,6 @@
  */
 namespace Deepslam\ContentParser;
 
-use stdClass;
-use Deepslam\ContentParser\Encoding;
-
 final class ParsingResult {
     /**
      * Stored params

@@ -150,19 +150,19 @@ abstract class ContentParser {
      * @return @ParsingResult Link to the parsing result
      */
     public function parse($url) {
+        $this->resetParsingResult();
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            throw new Exception(self::ERR_WRONG_URL);
+            return $this->getResult();
         }
         $this->url = $url;
         $this->urlParams = parse_url($this->getURL());
+        $this->getData();
         if ($this->needsCodeStrip()) {
             $this->parsingResult->stripContent();
         }
         if ($this->needsCodeClean()) {
             $this->parsingResult->cleanContent();
         }
-        $this->resetParsingResult();
-        $this->getData();
         return $this->getResult();
     }
 
