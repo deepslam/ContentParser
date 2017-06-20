@@ -1,8 +1,5 @@
 # Content Parser - Laravel 5 package for automatically detecting a content on custom web pages.
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-
 With this package, you can easily detect main content on different web pages and grab the content from it.
 This package provides following features:
 
